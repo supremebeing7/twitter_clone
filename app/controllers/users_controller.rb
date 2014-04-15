@@ -5,6 +5,7 @@ def index
   end
 
   def show
+    @tweet = Tweet.new
     @user = User.find(params[:id])
   end
 
@@ -29,7 +30,7 @@ def index
     if @user.save
       cookies[:auth_token] = @user.auth_token
       flash[:notice] = "User created!"
-      redirect_to(root_path)
+      redirect_to user_path(@user)
     else
       render 'new'
     end

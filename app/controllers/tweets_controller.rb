@@ -28,7 +28,10 @@ def index
     @tweet = Tweet.new(tweets_params)
     if @tweet.save
       flash[:notice] = "tweet created!"
-      redirect_to(root_path)
+      respond_to do |format|
+        format.html { redirect_to user_path(@tweet.user) }
+        format.js
+      end
     else
       render 'new'
     end
@@ -43,6 +46,6 @@ def index
 private
 
   def tweets_params
-    params.require(:tweet).permit(:tweetname, :password, :password_confirmation, :auth_token, :email)
+    params.require(:tweet).permit(:user_id, :content)
   end
 end

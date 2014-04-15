@@ -1,0 +1,1 @@
+$('#tweets').prepend('<div class="row"><span class="tweetcontent"><%= @tweet.content %></span><br/><span class="tweetdatetime"><%= @tweet.created_at.strftime("%l:%M %p, %D") %></span></div>');

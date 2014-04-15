@@ -1,0 +1,19 @@
+<%= content_for :title, @user.username %>
+
+<h1>Tweets by <%= @user.username %></h1>
+
+<%= form_for @tweet, url: tweets_path, method: "post", remote: true do |f| %>
+  <%= f.submit "Tweet", class: "btn btn-primary" %>
+  <%= f.text_field :content, placeholder: "Tweet something!" %>
+  <%= f.hidden_field :user_id, value: @user.id %>
+<% end %>
+
+<div id="tweets">
+  <% @user.tweets.order(created_at: :desc).each do |tweet| %>
+    <div class="row">
+      <span class="tweetcontent"><%= tweet.content %></span><br/>
+      <span class="tweetdatetime"><%= tweet.created_at.strftime("%l:%M %p, %D") %></span>
+    </div>
+  <% end %>
+</div>
+
