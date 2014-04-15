@@ -4,4 +4,6 @@ TwitterClone::Application.routes.draw do
   resources :sessions
   resources :users
   resources :tweets
+  resources :relationships
+
 end

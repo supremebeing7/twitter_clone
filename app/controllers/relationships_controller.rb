@@ -1,17 +1,11 @@
-class UsersController < ApplicationController
+class RelationshipsController < ApplicationController
 
 def index
     @users = User.all
   end
 
   def show
-    @tweet = Tweet.new
-    @relationship = Relationship.new
     @user = User.find(params[:id])
-  end
-
-  def new
-    @user = User.new
   end
 
   def edit
@@ -27,11 +21,9 @@ def index
   end
 
   def create
-    @user = User.new(users_params)
-    if @user.save
-      cookies[:auth_token] = @user.auth_token
-      flash[:notice] = "User created!"
-      redirect_to user_path(@user)
+    @relationship = Relationship.new(relationships_params)
+    if @relationship.save
+      redirect_to user_path(@relationship.followed_id)
     else
       render 'new'
     end
@@ -45,7 +37,7 @@ def index
 
 private
 
-  def users_params
-    params.require(:user).permit(:username, :password, :password_confirmation, :auth_token, :email)
+  def relationships_params
+    params.require(:relationship).permit(:followed_id, :follower_id)
   end
 end

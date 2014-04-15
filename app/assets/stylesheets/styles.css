@@ -16,3 +16,14 @@
 .tweetdatetime {
   color: gray;
 }
+
+.big-rounded-corners {
+  border-radius: 8px;
+  font-size:22px;
+  height:34px;
+  left:0;
+  line-height:22px;
+  padding:1px 1px 1px;
+  top:0;
+  width:400px;
+}
