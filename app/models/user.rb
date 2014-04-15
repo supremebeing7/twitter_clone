@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
+private
   def send_signup_confirmation
     UserMailer.signup_confirmation(self).deliver
   end
